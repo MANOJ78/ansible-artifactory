@@ -1,6 +1,6 @@
 ---
 - name: artifactory | Install dependencies
-  yum: pkg={{ item }} state=installed
+  apt: pkg={{ item }} state=installed
   with_items:
     - unzip
     - net-tools
@@ -14,12 +14,11 @@
 - name: artifactory | Extract artifactory
   shell: unzip /opt/{{ artifactory_zip_file }} -d /opt  creates={{ artifactory_dir }}
 
-
 - name: artifactory | Getting in to installation directory
-  shell: cd /opt/artifactory-oss-4.4.1/bin
+  shell: cd /opt/artifactory-pro-6.5.9/bin
 
 - name: artifactory| Install service
-  shell: bash /opt/artifactory-oss-4.4.1/bin/installService.sh
+  shell: bash /opt/artifactory-pro-6.5.9/bin/installService.sh
 
 - name: artifactory | Start/Restart artifactory
   service: name=artifactory state=started
